@@ -10,7 +10,7 @@ jobs:
     name: Add Size Label to PR
     steps:
     - name: All Checks
-      uses: flowdify/add-size-label-to-pr@main
+      uses: flowdify/add-size-label-to-pr@v1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         pull-request--size-small: 50
