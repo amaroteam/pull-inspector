@@ -1,0 +1,27 @@
+name: 'Pull Inspector'
+author: 'ranemihir/Flowdify'
+description: 'A GitHub Action to add relevant size label to PR based on the change in LOC.'
+branding:
+  icon: ''  
+  color: ''
+
+inputs:
+  token: 
+    description: 'GitHub Access Token'
+    required: true
+  pull-request--size-small:
+    description: 'Size of the pull request measured by the lines of code changed.'
+    required: false
+    default: 50
+  pull-request--size-medium:
+    description: 'Size of the pull request measured by the lines of code changed.'
+    required: false
+    default: 200
+  pull-request--size-large:
+    description: 'Size of the pull request measured by the lines of code changed.'
+    required: false
+    default: 400
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
