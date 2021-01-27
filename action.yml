@@ -2,8 +2,8 @@ name: 'Add Size Label to PR'
 author: 'ranemihir/Flowdify'
 description: 'A GitHub Action to add relevant size label to PR based on the change in LOC.'
 branding:
-  icon: ''  
-  color: ''
+  icon: 'tag'  
+  color: 'white'
 
 inputs:
   token: 
