@@ -58,25 +58,20 @@ class PullRequest extends Contribution {
 	}
 
 	async removeOldLabels() {
-		if (this._payload) {
-			if (this._payload.labels.includes(this.LABELS[0].name)) {
-				this.removeLabel(this.LABELS[0].name);
-			} else if (this._payload.labels.includes(this.LABELS[1].name)) {
-				this.removeLabel(this.LABELS[1].name);
-			} else if (this._payload.labels.includes(this.LABELS[2].name)) {
-				this.removeLabel(this.LABELS[2].name);
-			}
+		if (this._payload.labels.includes(this.LABELS[0].name)) {
+			this.removeLabel(this.LABELS[0].name);
+		} else if (this._payload.labels.includes(this.LABELS[1].name)) {
+			this.removeLabel(this.LABELS[1].name);
+		} else if (this._payload.labels.includes(this.LABELS[2].name)) {
+			this.removeLabel(this.LABELS[2].name);
 		}
 	}
 
 	async respond() {
 		try {
 			await this.removeOldLabels();
-
 			const labelsManager = new LabelsManager(this._core, this._payload, this._octokit, this._owner, this._repo, this.LABELS);
-
 			await labelsManager.createOrUpdateLabels();
-
 			await this.addRelevantSizeLabel();
 		} catch (err) {
 			console.error(err);

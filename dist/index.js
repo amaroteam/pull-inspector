@@ -5789,8 +5789,10 @@ const repo = context.repo.repo;
 
 const PullRequestContribution = __nccwpck_require__(387);
 
-const pullRequest = new PullRequestContribution(core, context.payload.pull_request, octokit, owner, repo);
-pullRequest.respond().then(() => { }).catch(err => core.setFailed(`Action failed with error: ${err}`));
+if (context.payload.pull_request && context.payload.pull_request != null) {
+    const pullRequest = new PullRequestContribution(core, context.payload.pull_request, octokit, owner, repo);
+    pullRequest.respond().then(() => { }).catch(err => core.setFailed(`Action failed with error: ${err}`));
+}
 
 
 /***/ }),
@@ -6138,25 +6140,20 @@ class PullRequest extends Contribution {
 	}
 
 	async removeOldLabels() {
-		if (this._payload) {
-			if (this._payload.labels.includes(this.LABELS[0].name)) {
-				this.removeLabel(this.LABELS[0].name);
-			} else if (this._payload.labels.includes(this.LABELS[1].name)) {
-				this.removeLabel(this.LABELS[1].name);
-			} else if (this._payload.labels.includes(this.LABELS[2].name)) {
-				this.removeLabel(this.LABELS[2].name);
-			}
+		if (this._payload.labels.includes(this.LABELS[0].name)) {
+			this.removeLabel(this.LABELS[0].name);
+		} else if (this._payload.labels.includes(this.LABELS[1].name)) {
+			this.removeLabel(this.LABELS[1].name);
+		} else if (this._payload.labels.includes(this.LABELS[2].name)) {
+			this.removeLabel(this.LABELS[2].name);
 		}
 	}
 
 	async respond() {
 		try {
 			await this.removeOldLabels();
-
 			const labelsManager = new LabelsManager(this._core, this._payload, this._octokit, this._owner, this._repo, this.LABELS);
-
 			await labelsManager.createOrUpdateLabels();
-
 			await this.addRelevantSizeLabel();
 		} catch (err) {
 			console.error(err);
