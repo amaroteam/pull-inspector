@@ -6138,12 +6138,14 @@ class PullRequest extends Contribution {
 	}
 
 	async removeOldLabels() {
-		if (this._payload.labels.includes(this.LABELS[0].name)) {
-			this.removeLabel(this.LABELS[0].name);
-		} else if (this._payload.labels.includes(this.LABELS[1].name)) {
-			this.removeLabel(this.LABELS[1].name);
-		} else if (this._payload.labels.includes(this.LABELS[2].name)) {
-			this.removeLabel(this.LABELS[2].name);
+		if (this._payload) {
+			if (this._payload.labels.includes(this.LABELS[0].name)) {
+				this.removeLabel(this.LABELS[0].name);
+			} else if (this._payload.labels.includes(this.LABELS[1].name)) {
+				this.removeLabel(this.LABELS[1].name);
+			} else if (this._payload.labels.includes(this.LABELS[2].name)) {
+				this.removeLabel(this.LABELS[2].name);
+			}
 		}
 	}
 
