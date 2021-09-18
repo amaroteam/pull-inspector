@@ -5776,8 +5776,6 @@ function wrappy (fn, cb) {
 /***/ 351:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __nccwpck_require__) => {
 
-__nccwpck_require__(153).config();
-
 const core = __nccwpck_require__(186);
 const github = __nccwpck_require__(438);
 
@@ -6166,14 +6164,6 @@ class PullRequest extends Contribution {
 }
 
 module.exports = PullRequest;
-
-/***/ }),
-
-/***/ 153:
-/***/ ((module) => {
-
-module.exports = eval("require")("dotenv");
-
 
 /***/ }),
 
