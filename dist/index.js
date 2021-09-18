@@ -5789,8 +5789,6 @@ const repo = context.repo.repo;
 
 const PullRequestContribution = __nccwpck_require__(387);
 
-console.log('context payload ==>', context.payload.pull_request);
-
 if (context.payload.pull_request && context.payload.pull_request != null) {
     const pullRequest = new PullRequestContribution(core, context.payload.pull_request, octokit, owner, repo);
     pullRequest.respond().then(() => { }).catch(err => core.setFailed(`Action failed with error: ${err}`));
